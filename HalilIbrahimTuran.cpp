@@ -1,15 +1,10 @@
-/*********
-CTIS164 - Template Source Program
-----------
+/*
 STUDENT :Halil İbrahim Turan
 ID: 21503113
 SECTION :03
 HOMEWORK:01
+*/
 
-----------
-PROBLEMS: If your program does not function correctly,
-explain here which parts are not running.
-*********/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,6 +23,7 @@ explain here which parts are not running.
 /* Global Variables for Template File */
 bool up = false, down = false, right = false, left = false;
 int  winWidth, winHeight; // current Window width and height
+//Globals
 bool timerActive = true;
 int r = 20;
 int xVelocity[5] = { 0,0,0,0,0 };
@@ -138,7 +134,7 @@ void vprint2(int x, int y, float size, char *string, ...) {
 	}
 	glPopMatrix();
 }
-
+//to display objects(in this case stick man) on the certain position of the screen
 void displayObject(int x,int y,int objectNumber) {
 	glColor3f(1, 0, 0);
 	//head part of stick man
@@ -168,6 +164,7 @@ void displayObject(int x,int y,int objectNumber) {
 	vprint((-274 + x), 258 + y, GLUT_BITMAP_8_BY_13, "%d", objectNumber);
 
 }
+//Initializing game screen
 void displayGameScreen() {
 	
 	glColor3f(0.3, 0.2, 0.5);
@@ -232,7 +229,7 @@ void onKeyDown(unsigned char key, int x, int y)
 	// exit when ESC is pressed.
 	if (key == 27)
 		exit(0);
-	if (key == ' ')
+	if (key == ' ')//stops when spacebar is pressed.
 		timerActive = !timerActive;
 	// to refresh the window it calls display() function
 	glutPostRedisplay();
@@ -257,7 +254,7 @@ void onSpecialKeyDown(int key, int x, int y)
 	case GLUT_KEY_DOWN: down = true; break;
 	case GLUT_KEY_LEFT: left = true; break;
 	case GLUT_KEY_RIGHT: right = true; break;
-	case GLUT_KEY_F1://F1 to restart;
+	case GLUT_KEY_F1://F1 to restart(initializing my globals with their default values);
 		timeCounter = { 0,0,0 };
 		winnerFinal = 0;
 		for (int j = 0; j < 5; j++) {
@@ -337,7 +334,7 @@ void onTimer(int v) {
 	glutTimerFunc(TIMER_PERIOD, onTimer, 0);
 	// Write your codes here.
 	if (timerActive) {
-		//time calc
+		//time calculations 
 		timeCounter.timeMilisec+=5;
 		if (timeCounter.timeMilisec % 100 == 0) {
 			timeCounter.timeSec++;
